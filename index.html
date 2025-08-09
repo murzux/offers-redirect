@@ -1,95 +1,249 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Special Offer</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VitaRelief — Learn More</title>
+  <meta name="description" content="VitaRelief — natural supplements. Click to learn more." />
+  <!-- Optional: add your own favicon or og tags -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+    :root{
+      --bg1: #072e16;
+      --bg2: #0f5b2b;
+      --accent: #ffd166;
+      --accent-2: #ff8a65;
+      --muted: rgba(255,255,255,0.92);
+      --glass: rgba(255,255,255,0.03);
+      --max-width: 980px;
     }
-    body {
-      font-family: Arial, sans-serif;
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(-45deg, #72c6ef, #005f99, #ff4757, #ffa502);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      color: white;
-      text-align: center;
-      padding: 0 20px;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      color:var(--muted);
+      background:linear-gradient(135deg,var(--bg1) 0%, var(--bg2) 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+
+    .card{
+      width:100%;
+      max-width:var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:28px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      box-shadow: 0 18px 60px rgba(2,8,6,0.55);
+      position:relative;
+      overflow:hidden;
     }
-    p {
-      font-size: 1.3em;
-      margin-bottom: 40px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+
+    /* Nice subtle animated gradient overlay */
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-50%;
+      background: radial-gradient(600px 300px at 10% 20%, rgba(255,221,102,0.06), transparent),
+                  radial-gradient(500px 260px at 90% 80%, rgba(255,138,101,0.04), transparent);
+      animation: floatBG 12s linear infinite;
+      z-index:0;
     }
-    a {
-      background: #ff4757;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 22px 70px;
-      border-radius: 16px;
-      font-size: 1.8em;
-      display: inline-block;
-      transition: background 0.4s ease, transform 0.2s ease;
-      box-shadow: 0 6px 12px rgba(255, 71, 87, 0.6);
+    @keyframes floatBG{
+      0%{transform:translate3d(0,0,0) rotate(0deg)}
+      50%{transform:translate3d(6px,-8px,0) rotate(3deg)}
+      100%{transform:translate3d(0,0,0) rotate(0deg)}
     }
-    a:hover {
-      background: #e84146;
-      transform: scale(1.1);
-      box-shadow: 0 10px 20px rgba(232, 65, 70, 0.8);
+
+    .content{display:flex;align-items:center;gap:18px;width:100%;position:relative;z-index:1}
+    .logo-wrap{
+      flex:0 0 120px;
+      display:flex;
+      align-items:center;justify-content:center;
+      padding:8px;border-radius:12px;
+      background:var(--glass);
+      min-height:96px;
     }
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 2em;
-      }
-      p {
-        font-size: 1.1em;
-      }
-      a {
-        padding: 18px 50px;
-        font-size: 1.4em;
-      }
+    .logo-wrap img{max-width:100%; max-height:88px; object-fit:contain; display:block}
+
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      min-width:0;
     }
+    .brand{
+      font-weight:800;
+      font-size:20px;
+      letter-spacing:0.4px;
+      color:var(--muted);
+      display:flex;align-items:center;gap:10px;
+    }
+    .tag{
+      font-size:13px;color:rgba(255,255,255,0.8);
+      font-weight:600;
+    }
+    h1{
+      margin:6px 0 0 0;
+      font-size:28px;
+      line-height:1.02;
+      font-weight:700;
+      color: #fff;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+      transform: translateY(8px);
+      opacity:0;
+      animation: fadeInUp .6s ease-out .12s forwards;
+    }
+    p.lead{
+      margin:8px 0 0 0;
+      color:rgba(255,255,255,0.86);
+      font-size:15px;
+      max-width:60ch;
+      opacity:0;
+      animation: fadeInUp .6s ease-out .22s forwards;
+    }
+
+    /* CTA */
+    .actions{display:flex;align-items:center;gap:12px;margin-left:auto}
+    .btn{
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      color:#072114;
+      border:0;padding:12px 18px;border-radius:12px;font-weight:800;cursor:pointer;
+      box-shadow:0 12px 40px rgba(0,0,0,0.35), 0 0 40px rgba(255,200,120,0.06);
+      transform-origin:center;
+      transition:transform .16s ease, box-shadow .16s ease, opacity .12s ease;
+      font-size:16px;
+      display:inline-flex;align-items:center;gap:10px;
+
+position:relative;
+      overflow:hidden;
+    }
+    .btn:active{transform:scale(.98)}
+    .btn:hover{transform:translateY(-3px)}
+    .countdown{
+      font-size:13px;color:rgba(7,33,24,0.9); background: rgba(255,255,255,0.9); padding:6px 8px; border-radius:8px; font-weight:700;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    /* small note */
+    .note{font-size:13px;color:rgba(255,255,255,0.8); margin-top:8px}
+
+    /* responsiveness */
+    @media (max-width:720px){
+      .card{padding:18px; flex-direction:column; align-items:stretch}
+      .content{flex-direction:column; align-items:center; text-align:center}
+      .logo-wrap{flex:0 0 110px}
+      .actions{margin-left:0; width:100%; justify-content:center}
+    }
+
+    /* animations */
+    @keyframes fadeInUp{
+      from{opacity:0; transform:translateY(10px)}
+      to{opacity:1; transform:none}
+    }
+
+    /* subtle focus */
+    .btn:focus{outline:3px solid rgba(255,210,140,0.18); outline-offset:4px}
   </style>
 </head>
 <body>
-  <h1>Don't miss this exclusive offer!</h1>
-  <p>Click the button below to get started now.</p>
-  <a id="offerLink" href="#" target="_blank" rel="noopener noreferrer">GET STARTED</a>
+  <main class="card" role="main" aria-labelledby="brand-title">
+    <div class="content">
+      <div class="logo-wrap" aria-hidden="false">
+        <!-- Put your logo file named "logo.png" in same folder or change src -->
+        <img src="logo.png" alt="VitaRelief logo" id="brandLogo" />
+      </div>
+
+      <div class="main">
+        <div class="brand" id="brand-title">
+          VitaRelief
+          <span class="tag">Natural wellness • Trusted</span>
+        </div>
+        <h1>Natural support for everyday vitality</h1>
+        <p class="lead">High-quality nutraceuticals crafted to help you feel and live better. Tap below to learn more — or wait 10 seconds to continue automatically.</p>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div class="note">Safe for EU traffic. Compliant landing — fast and focused.</div>
+        </div>
+      </div>
+
+      <div class="actions" role="group" aria-label="Actions">
+        <button class="btn" id="ctaBtn" aria-label="Learn more">Learn More →</button>
+        <div class="countdown" id="countdown" aria-live="polite">10</div>
+      </div>
+    </div>
+  </main>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const offer = params.get('offer');
-    const link = document.getElementById('offerLink');
-
-    if (offer && offer.startsWith('http')) {
-      link.href = offer;
-    } else {
-      link.href = '#';
-      link.textContent = 'Offer link is missing or invalid';
-      link.style.background = '#888';
-      link.style.pointerEvents = 'none';
+    // Helper: read URL param 'offer' (decoded)
+    function getOfferFromURL(){
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const raw = params.get('offer');
+        if(!raw) return null;
+        // If offer is encoded twice, try to decode gracefully
+        try { return decodeURIComponent(raw); } catch(e){ return raw; }
+      } catch(e){ return null; }
     }
+
+    const offer = getOfferFromURL();
+    const defaultLink = "#"; // fallback — replace with your default if needed
+    const targetUrl = offer || defaultLink;
+
+    // Countdown + auto redirect in 10s
+    let seconds = 10;
+    const countdownEl = document.getElementById('countdown');
+    const cta = document.getElementById('ctaBtn');
+
+    let autoRedirectTimeout = null;
+    function updateCountdown(){
+      countdownEl.textContent = seconds;
+      if(seconds <= 0){
+        // Auto redirect
+        window.location.href = targetUrl;
+      } else {
+        seconds--;
+        autoRedirectTimeout = setTimeout(updateCountdown, 1000);
+      }
+    }
+
+    // Start countdown
+    updateCountdown();
+
+    // Click handler: immediate redirect and cancel auto
+    cta.addEventListener('click', function(e){
+      e.preventDefault();
+      // cancel auto
+      if(autoRedirectTimeout) { clearTimeout(autoRedirectTimeout); autoRedirectTimeout = null; }
+      // small immediate animation
+      cta.disabled = true;
+      cta.style.opacity = '0.9';
+      cta.style.transform = 'scale(0.99)';
+      setTimeout(function(){ window.location.href = targetUrl; }, 150);
+    });
+
+    // Accessibility: if JS disabled, show hint (optional)
+
+// Replace missing logo with text if image not found
+    document.getElementById('brandLogo').addEventListener('error', function(){
+      const wrap = this.parentNode;
+      this.remove();
+      const fallback = document.createElement('div');
+      fallback.textContent = 'VitaRelief';
+      fallback.style.fontWeight = '800';
+      fallback.style.fontSize = '20px';
+      fallback.style.color = '#fff';
+      wrap.appendChild(fallback);
+    });
   </script>
 </body>
 </html>
